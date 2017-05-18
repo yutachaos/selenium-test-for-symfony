@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Todo creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input id="create" class="btn btn-primary" type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul class="unstyled">
+        <li>
+            <a id="index" class="btn btn-info" href="{{ path('todo_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

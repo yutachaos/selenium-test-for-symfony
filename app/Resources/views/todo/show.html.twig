@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Todo</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th width="100px">Id</th>
+                <td id="id_text" width="450px">{{ toDo.id }}</td>
+            </tr>
+            <tr>
+                <th>Task</th>
+                <td id="task_text" >{{ toDo.task }}</td>
+            </tr>
+            <tr>
+                <th>Memo</th>
+                <td id="memo_text">{{ toDo.memo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="unstyled">
+        <li>
+            <a id="index" class="btn btn-info" href="{{ path('todo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a id="edit" class="btn btn-success" href="{{ path('todo_edit', { 'id': toDo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input id="delete" class="btn btn-danger"  type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,34 @@
+version: '2'
+services:
+  # mysql data
+  mysqldata:
+    image: busybox
+    volumes:
+     - /var/lib/mysql
+  # mysql
+  mysql:
+    image: mysql:5.6.31
+    volumes_from:
+     - mysqldata
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./docker/db_init:/docker-entrypoint-initdb.d
+  # apache
+  test-selenium:
+    build: ./docker/server
+    volumes:
+      - .:/var/www/app
+      - /tmp:/var/log/httpd
+    ports:
+      - "8000:8000"
+  # docker-selenium
+  selenium:
+    image: selenium/standalone-chrome-debug:3.0.1-germanium
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+      - "5900:5900"

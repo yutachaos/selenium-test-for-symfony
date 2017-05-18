@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Todos list</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Task</th>
+                <th>Memo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for toDo in toDos %}
+            <tr>
+                <td><a href="{{ path('todo_show', { 'id': toDo.id }) }}">{{ toDo.id }}</a></td>
+                <td>{{ toDo.task }}</td>
+                <td>{{ toDo.memo }}</td>
+                <td>
+                    <ul class="unstyled">
+                        <li>
+                            <a id="show_{{ toDo.id }}" class="btn btn-info" href="{{ path('todo_show', { 'id': toDo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a id="edit_{{ toDo.id }}" class="btn btn-success" href="{{ path('todo_edit', { 'id': toDo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul class="unstyled">
+        <li>
+            <a id="create" class="btn btn-primary" href="{{ path('todo_new') }}">Create a new toDo</a>
+        </li>
+    </ul>
+{% endblock %}
