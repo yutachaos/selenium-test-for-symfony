@@ -9,7 +9,7 @@ services:
     volumes:
       - ./docker/db_init:/docker-entrypoint-initdb.d
   # apache
-  test-selenium:
+  apache:
     build: ./docker/server
     volumes:
       - .:/var/www/app

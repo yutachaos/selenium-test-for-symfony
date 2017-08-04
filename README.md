@@ -1,9 +1,6 @@
 selenium-test-for-symfony
 =========================
 
-# 内容
-symfony2でphpunit + seleniumを利用するテストプログラム
-
 ## Description
 symfony2でphpunit + seleniumを利用するテストプログラム
 動作環境は
@@ -13,7 +10,7 @@ php5.6,mysql 5.6.31
 ### dockerコンテナ
 
 #### Apache
-* Apacheのログは/tmpにaccess\_log、error\_logが出力されます
+* Apacheのログは/app/logsにaccess\_log、error\_logが出力されます
 	* 出力先を変えたい場合は `docker-compose.yml` のvolumesを変更してコンテナを再作成してください
 * コンテナ内部では `/var/www/app` で ホスト./をマウントしています
 * ポートは8000番をバインドしています、変えたい場合は`docker-compose.yml`のportsを変えてコンテナを再作成してください
@@ -36,10 +33,10 @@ php5.6,mysql 5.6.31
     * 立ち上げると4444ポートでselenium serverが立ち上がり、5900ポートでVNCが立ち上がります。Finder→移動→サーバへ接続→サーバアドレス[vnc://localhost:5900]でVNCに接続できます(passwordはsecret)
 
 #### サンプルテスト実行
-- レポジトリのルートディレクトリ`php bin/phpunit -c app` で実行出来ます。
+- レポジトリのルートディレクトリ`docker-compose exec apache php bin/phpunit -c app` で実行出来ます。
 
 ## Requirement
-php,docker,composer
+php,docker,docker-compose
 
 ## Install
 
@@ -51,7 +48,7 @@ docker-compose up -d
 symfonyの依存ファイルをinstallする  
 
 ```
-php composer.phar -n --dev install
+docker-compose exec apache php composer.phar -n --dev install
 ```
 
 ## note

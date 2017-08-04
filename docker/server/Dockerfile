@@ -17,5 +17,7 @@ RUN rm -rf /var/www/html
 RUN mkdir -p /var/www/app/web
 RUN ln -snf /var/www/app/web /var/www/html
 
+WORKDIR  /var/www/app
+
 ENTRYPOINT /usr/sbin/httpd -D FOREGROUND
 EXPOSE 8000

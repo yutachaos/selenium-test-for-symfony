@@ -20,7 +20,7 @@ class SeleniumTest extends WebTestCase
 
     const WINDOW_HEIGHT = 768;
     const WINDOW_WIDTH = 1366;
-    const SELENIUM_SERVER_HOST = "http://localhost:4444/wd/hub";
+    const SELENIUM_SERVER_HOST = "http://selenium:4444/wd/hub";
 
     protected $driver;
 
@@ -41,7 +41,7 @@ class SeleniumTest extends WebTestCase
         //windowサイズを指定
         $this->driver->manage()->window()->setSize(new WebDriver\WebDriverDimension(self::WINDOW_WIDTH, self::WINDOW_HEIGHT));
 
-        $this->driver->get("http://test-selenium:8000/todo/");
+        $this->driver->get("http://apache:8000/todo/");
         $this->driver->findElement(WebDriverBy::id('create'))->click();
 
         $this->driver->wait(20, 1000)->until(
