@@ -1,15 +1,7 @@
 version: '2'
 services:
-  # mysql data
-  mysqldata:
-    image: busybox
-    volumes:
-     - /var/lib/mysql
-  # mysql
   mysql:
     image: mysql:5.6.31
-    volumes_from:
-     - mysqldata
     ports:
       - "3306:3306"
     environment:
@@ -21,7 +13,7 @@ services:
     build: ./docker/server
     volumes:
       - .:/var/www/app
-      - /tmp:/var/log/httpd
+      - ./app/logs:/var/log/httpd
     ports:
       - "8000:8000"
   # docker-selenium

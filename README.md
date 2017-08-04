@@ -53,6 +53,16 @@ symfonyの依存ファイルをinstallする
 ```
 php composer.phar -n --dev install
 ```
+
+## note
+
+- 再実行してうまく動かない場合はapp/cacheのキャッシュ削除して、最新のソースを反映してください。
+
+## access
+
+- 下記URLにアクセスすると動作を確認出来ます
+- http://localhost:8000/todo
+
 ## Qiita
 - http://qiita.com/yutaChaos/items/4a1da5d55a3bf0df889e
 
