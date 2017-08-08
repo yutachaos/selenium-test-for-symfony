@@ -1,20 +1,21 @@
 version: 0.1
-
 phases:
   install:
     commands:
-      - apk add --no-cache \
-        py-pip=9.0.0-r1
-        pip install \
-        docker-compose==1.12.0
+      - pip install docker-compose==1.12.0
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION)
+# ECRへのログインを行う場合は環境設定と合わせて実行する。
+#      - echo Logging in to Amazon ECR
+#      - $(aws ecr get-login --region $AWS_DEFAULT_REGION)
   build:
     commands:
+# container作成
       - docker-compose build
+# container起動
       - docker-compose up -d
       - sleep 15s
+# container内のcomposer実行
       - docker-compose exec -T server php composer.phar install -n
+# test実行
       - docker-compose exec -T server bin/phpunit -c app
