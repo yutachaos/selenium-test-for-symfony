@@ -16,6 +16,6 @@ phases:
       - docker-compose up -d
       - sleep 15s
 # container内のcomposer実行
-      - docker-compose exec -T server php composer.phar install -n
+      - docker exec -T apache php composer.phar install -n
 # test実行
-      - docker-compose exec -T server bin/phpunit -c app
+      - docker exec -T apache bin/phpunit -c app
