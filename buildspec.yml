@@ -14,7 +14,7 @@ phases:
       - docker-compose build
 # container起動
       - docker-compose up -d
-      - sleep 15s
+      - sleep 60s
 # container内のcomposer実行
       - docker-compose exec -T apache php composer.phar install -n
 # test実行
