@@ -1,7 +1,6 @@
 version: '2'
 services:
   mysql:
-    container_name: db
     image: mysql:5.6.31
     ports:
       - "3306:3306"
@@ -11,7 +10,6 @@ services:
       - ./docker/db_init:/docker-entrypoint-initdb.d
   # apache
   apache:
-    container_name: server
     build: ./docker/server
     volumes:
       - .:/var/www/app
@@ -20,10 +18,7 @@ services:
       - "8000:8000"
   # docker-selenium
   selenium:
-    container_name: selenium
     image: selenium/standalone-chrome-debug:3.0.1-germanium
-    volumes:
-      - /dev/shm:/dev/shm
     ports:
       - "4444:4444"
       - "5900:5900"
