@@ -42,6 +42,9 @@ class SeleniumTest extends WebTestCase
         $this->driver->manage()->window()->setSize(new WebDriver\WebDriverDimension(self::WINDOW_WIDTH, self::WINDOW_HEIGHT));
 
         $this->driver->get("http://apache:8000/todo/");
+        $this->driver->wait(20, 1000)->until(
+            WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('create'))
+        );
         $this->driver->findElement(WebDriverBy::id('create'))->click();
 
         $this->driver->wait(20, 1000)->until(
