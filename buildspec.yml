@@ -1,4 +1,4 @@
-version: 0.2
+version: 0.1
 phases:
   install:
     commands:
@@ -14,7 +14,8 @@ phases:
       - docker-compose build
 # container起動
       - docker-compose up -d
-      - sleep 60s
+      - sleep 15s
+      - docker ps
 # container内のcomposer実行
       - docker-compose exec -T apache php composer.phar install -n
 # test実行
